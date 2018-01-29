@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Working with Selectors</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script>
+      //Cannot access the contents of jquery unless the document is ready
+      $(document).ready(function() {
+
+        //Click to change to red
+        $('.linkA').on('click', function() {
+          $('#addingRed').addClass('red');
+        });
+
+        //Click to  slide up
+        $('.linkB').on('click', function() {
+          $('#slideUp').slideToggle(1000); //Easy slider. Can use for navigation.
+        });
+
+        //Click to fade out
+        $('.linkC').on('click', function() {
+          $('#fade').fadeOut(1000);
+        });
+
+        //Replace Text
+        $('.linkD').click(function() {
+          //$('h1').text('Hello World'); //.text changes the text instantly
+          $('#replaceText').replaceWith('<h3>This is the text to replace the original</h3>');
+        });
+
+        $('.linkE').mousedown(function() {
+          $('#altercss').css('font-size', '100px');
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <h1 id="addingRed">Change to red</h1>
+    <a href="#" class="linkA">Click me to change to red</a>
+
+    <h1 id="slideUp">Slide up</h1>
+    <a href="#" class="linkB">Click me to slide up</a>
+
+    <h1 id="fade">Fade</h1>
+    <a href="#" class="linkC">Click me to fade</a>
+
+    <h1 id="replaceText">Replace Text</h1>
+    <a href="#" class="linkD">Click me to replace text above</a>
+
+    <h1 id="altercss">Alters CSS</h1>
+    <a href="" class="linkE">Click me to alter the css</a>
+  </body>
+</html>
