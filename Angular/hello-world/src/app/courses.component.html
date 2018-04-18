@@ -1,0 +1,28 @@
+<h4>{{ "Title: " + title + " " + getSubtitle() }} (courses.component.*)</h4>
+<ul>
+    <!-- *ngFor is a DIRECTIVE. Whenever you are using a directive that modifies the DOM by adding or
+         removing an element you have to add a '*' to the front of the directive. -->
+    <li *ngFor="let course of courses">     
+        {{ course }}
+    </li>
+</ul>
+<table>
+    <tr>
+        <td [attr.colspan]="colSpan"></td>
+    </tr>
+</table>
+
+<h4>Binding (courses.component.*)</h4>
+<button class="btn btn-primary" [class.active]="isActive">With Class Binding</button>       <!-- CLASS BINDING -->
+<button [style.backgroundColor]="!isActive ? 'blue' : 'white'">With Style Binding</button>  <!-- STYLE BINDING -->
+<button (click)="onSave($event)">With Event Binding</button><br><br>                        <!-- EVENT BINDING -->
+
+<h4>Event Handling (courses.component.*)</h4>
+<input (keyup)="onKeyUp($event)"/><br><br>                                                  <!-- MORE EVENT BINDING -->
+<input (keyup.enter)="onKeyUpWithEventFiltering($event)"/><br><br>                          <!-- EVENT FILTERING -->
+<input #email (keyup.enter)="onKeyUpUsingVariable(email.value)"/><br><br>                   <!-- TEMPLATE VARIABLES -->
+<input [(ngModel)]="twoWayBindingEmail" (keyup.enter)="onKeyUpTwoWayBinding()"/><br><br>    <!-- TWO WAY BINDING [()]=banana in a box*--> 
+<!-- ngModel is used for two way binding. You have to import 
+    FormsModule in app.module.ts if you want to use it. -->
+<br>
+

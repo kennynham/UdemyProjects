@@ -1,0 +1,54 @@
+<!-- This is the external template for our app component -->
+<h1>Angular</h1>
+<courses></courses>
+<favorite></favorite>
+<br>
+
+<!-- 
+  Input Property:    [isFavorite]="post.isFavorite"     post.isFavorite is defined in the app.component.ts
+  Output Property:   (change)="onFavoriteChange()"
+  This defaults to a green button because the initial input  from post.appFavorite = true.
+
+  Output is how you pass data along with your events.
+-->
+<favorite-prop-bind [is-favorite]="post.appFavorite" (is-change)="onFavoriteChange($event)"></favorite-prop-bind>
+
+
+<!-- ngContent & ngContainer -->
+<custom-content>
+    <div class="heading">This is the custom heading using ngContent</div>   <!-- This is the custom message -->
+    <div class="body">This is the custom body message</div>         <!-- This is the custom message -->
+</custom-content>
+
+<custom-content>
+    <ng-container class="heading">ng-container</ng-container>   <!-- Uses ng-container -->
+    <ng-container class="body">Does not produce divs in the DOM with ng-container</ng-container>         <!-- Uses ng-container -->
+</custom-content>
+
+<br>
+<h3>Using *ngIf</h3>
+
+<!-- ****************** Using ngIf ****************** -->
+<div *ngIf="courses.length > 0"> <!-- You can have methods in here as well -->
+    List of courses. Take a look into the courses array in app.component.ts
+</div>
+<div *ngIf="courses.length == 0">
+    No courses yet. Check the courses array in app.component.ts
+</div>
+
+<!-- You can make this cleaner using ng-template -->
+<div *ngIf="courses.length > 0; else noCourses">
+    List of courses using a ng-template if/else blocks
+</div>
+<ng-template #noCourses>
+    No courses yet using ng-template if/else blocks <br>
+</ng-template>
+
+<!-- Even CLEANER!!! wows -->
+<div *ngIf="courses.length > 0; then coursesList else noCourses2"></div>
+<ng-template #coursesList>
+    This is displaying courses using Angular's if/else blocks
+</ng-template>
+<ng-template #noCourses2>
+    No courses yet using ng-template if/else blocks the cleaner way
+</ng-template>
