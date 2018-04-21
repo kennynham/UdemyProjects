@@ -12,6 +12,7 @@ import { AuthorComponent } from './author/author.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { FavoritePropBindComponent } from './favorite-prop-bind/favorite-prop-bind.component';
 import { CustomContentComponent } from './custom-content/custom-content.component';
+import { CodeSnippetComponent } from './code-snippet/code-snippet.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CustomContentComponent } from './custom-content/custom-content.componen
     AuthorComponent,
     FavoriteComponent,
     FavoritePropBindComponent,
-    CustomContentComponent
+    CustomContentComponent,
+    CodeSnippetComponent
   ],
   imports: [
     BrowserModule,

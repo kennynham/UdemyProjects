@@ -7,6 +7,7 @@ import { CoursesService } from './courses.service';
 @Component({
     selector: 'courses', //We want to reference an element of <courses>
     templateUrl: './courses.component.html',
+    styleUrls: ['./courses.component.css']
 })
 
 export class CoursesComponent { //Use the name component in the name of the class.

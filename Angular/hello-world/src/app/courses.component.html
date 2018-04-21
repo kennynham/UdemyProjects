@@ -1,4 +1,8 @@
 <h4>{{ "Title: " + title + " " + getSubtitle() }} (courses.component.*)</h4>
+<br>
+
+<!-- USING *ngFor -->
+<h4>Using *ngFor</h4>
 <ul>
     <!-- *ngFor is a DIRECTIVE. Whenever you are using a directive that modifies the DOM by adding or
          removing an element you have to add a '*' to the front of the directive. -->
@@ -6,23 +10,155 @@
         {{ course }}
     </li>
 </ul>
+This list of courses is propagated using an Angular directive called <strong>*ngFor</strong>, which is used like a for loop.
+<br>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;ul&gt;
+        &lt;li *ngFor=&quot;let course of courses&quot;&gt;     
+            &#123; &#123; code &#125; &#125;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    </div>
+</code-snippet> 
+
+<!-- ATTRIBUTE BINDING -->
+<h4>Attribute Binding</h4>
 <table>
     <tr>
         <td [attr.colspan]="colSpan"></td>
     </tr>
 </table>
 
-<h4>Binding (courses.component.*)</h4>
-<button class="btn btn-primary" [class.active]="isActive">With Class Binding</button>       <!-- CLASS BINDING -->
-<button [style.backgroundColor]="!isActive ? 'blue' : 'white'">With Style Binding</button>  <!-- STYLE BINDING -->
-<button (click)="onSave($event)">With Event Binding</button><br><br>                        <!-- EVENT BINDING -->
+To bind attributes to values from your .ts file use <strong>attr.theAttributeName="valueFromTypeScriptFile"</strong>
+<br>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td &#91;attr.colspan&#93;=&quot;colSpan&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    </div>
+</code-snippet> 
 
-<h4>Event Handling (courses.component.*)</h4>
-<input (keyup)="onKeyUp($event)"/><br><br>                                                  <!-- MORE EVENT BINDING -->
-<input (keyup.enter)="onKeyUpWithEventFiltering($event)"/><br><br>                          <!-- EVENT FILTERING -->
-<input #email (keyup.enter)="onKeyUpUsingVariable(email.value)"/><br><br>                   <!-- TEMPLATE VARIABLES -->
-<input [(ngModel)]="twoWayBindingEmail" (keyup.enter)="onKeyUpTwoWayBinding()"/><br><br>    <!-- TWO WAY BINDING [()]=banana in a box*--> 
+<!-- CLASS BINDING -->
+<h4>Class Binding</h4>
+<button class="btn btn-primary" [class.active]="isActive">With Class Binding</button>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;button class=&quot;btn btn-primary&quot; [class.active]=&quot;isActive&quot;&gt;With Class Binding&lt;/button&gt;
+    </div>
+</code-snippet> 
+
+
+<!-- STYLE BINDING -->
+<h4>Style Binding</h4>
+<button [style.backgroundColor]="!isActive ? 'blue' : 'white'">With Style Binding</button>  
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;button [style.backgroundColor]=&quot;!isActive ? 'blue' : 'white'&quot;&gt;With Style Binding&lt;/button&gt;
+    </div>
+</code-snippet> 
+
+<!-- EVENT BINDING -->
+<h4>Event Binding</h4>
+<button (click)="onSave($event)">With Event Binding</button><br><br>                      
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;button (click)=&quot;onSave($event)&quot;&gt;With Event Binding&lt;/button&gt;
+    </div>
+</code-snippet>
+<code-snippet>
+    <div class="snippet_filename">courses.component.ts</div>
+    <div class="snippet_code">
+        onSave($event) &#123;
+        $event.stopPropagation(); //This is used to prevent the bubbling up of events from the DOM.
+        console.log(&quot;Button was clicked&quot;, $event);
+        alert(&quot;Button was clicked&quot;);
+    &#125;
+    </div>
+</code-snippet> 
+
+<!-- MORE EVENT BINDING -->
+<h4>Event Handling</h4>
+<p>Explicitly grabbing the keyup event as an input and handling the event</p>
+<input (keyup)="onKeyUp($event)"/><br><br>                                                  
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">&lt;input (keyup)=&quot;onKeyUp($event)&quot;/&gt;</div>
+</code-snippet> 
+<code-snippet>
+    <div class="snippet_filename">courses.component.ts</div>
+    <div class="snippet_code">
+        onKeyUp($event) &#123;
+        if ($event.keyCode === 13) alert(&quot;ENTER was pressed&quot;); //The key code for ENTER is 13
+    &#125;
+    </div>
+</code-snippet> 
+
+<!-- EVENT FILTERING -->
+<h4>Event Filtering</h4>
+<input (keyup.enter)="onKeyUpWithEventFiltering($event)"/>
+<p>Grabbing the event directly as an option of keyup</p>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+            &lt;input (keyup.enter)=&quot;onKeyUpWithEventFiltering($event)&quot;/&gt;
+    </div>
+</code-snippet>
+<code-snippet>
+    <div class="snippet_filename">courses.component.ts</div>
+    <div class="snippet_code">
+        onKeyUpWithEventFiltering($event) &#123;
+        alert(&quot;ENTER was pressed&quot;); //The key code for ENTER is 13
+    &#125;
+    </div>
+</code-snippet> 
+
+<!-- TEMPLATE VARIABLES -->
+<h4>Template Variables</h4>
+<input #email (keyup.enter)="onKeyUpUsingVariable(email.value)"/><br><br>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">&lt;input #email (keyup.enter)=&quot;onKeyUpUsingVariable(email.value)&quot;/&gt;</div>
+</code-snippet>
+<code-snippet>
+    <div class="snippet_filename">courses.component.ts</div>
+    <div class="snippet_code">
+        onKeyUpUsingVariable(email) &#123;
+        alert(email);
+        &#125;
+    </div>
+</code-snippet>              
+
+<!-- TWO WAY BINDING [()]=banana in a box*--> 
 <!-- ngModel is used for two way binding. You have to import 
     FormsModule in app.module.ts if you want to use it. -->
+<h4>Two Way Binding</h4>
+<input [(ngModel)]="twoWayBindingEmail" (keyup.enter)="onKeyUpTwoWayBinding()"/><br><br>
+<code-snippet>
+    <div class="snippet_filename">courses.component.html</div>
+    <div class="snippet_code">
+        &lt;input [(ngModel)]=&quot;twoWayBindingEmail&quot; (keyup.enter)=&quot;onKeyUpTwoWayBinding()&quot;/&gt;
+    </div>
+</code-snippet>
+<code-snippet>
+    <div class="snippet_filename">courses.component.ts</div>
+    <div class="snippet_code">
+        twoWayBindingEmail = &quot;thisisan@email.com&quot;;
+        onKeyUpTwoWayBinding() &#123;
+            alert(this.twoWayBindingEmail);
+        &#125;
+    </div>
+</code-snippet>
+
+
 <br>
+
 

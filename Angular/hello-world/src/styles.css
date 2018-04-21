@@ -4,3 +4,18 @@
 body {
     padding: 20px;
 }
+
+pre {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+pre code {
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.code_filename {
+    font-weight: 500;
+}
