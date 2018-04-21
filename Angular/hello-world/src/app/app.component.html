@@ -52,3 +52,27 @@
 <ng-template #noCourses2>
     No courses yet using ng-template if/else blocks the cleaner way
 </ng-template>
+
+<!-- ****************** [hidden] property ****************** -->
+<h3>Using the [hidden] property.</h3>
+Use this to hide elements if conditions are met. The element remains inside of the DOM though. 
+Use *ngIf when you don't want the element to show up inside the DOM if it meets a condition.
+
+<div [hidden]="courses.length > 0">
+    This text will show if courses.length is less than 0
+</div>
+<div [hidden]="courses.length == 0">
+    This text will show if courses.length not equal to 0
+</div>
+
+<h3>Using ngSwitchCase</h3>
+<ul class="nav nav-pills">
+    <li class="active"><a href="">Map View</a></li>
+    <li><a href="">List View</a></li>
+</ul>
+<div>
+    <div>Map View Content</div>
+    <div>List View Content</div>
+</div>
+
+
