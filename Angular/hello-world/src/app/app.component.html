@@ -54,7 +54,7 @@
 </ng-template>
 
 <!-- ****************** [hidden] property ****************** -->
-<h3>Using the [hidden] property.</h3>
+<h4>Using the [hidden] property.</h4>
 Use this to hide elements if conditions are met. The element remains inside of the DOM though. 
 Use *ngIf when you don't want the element to show up inside the DOM if it meets a condition.
 
@@ -65,14 +65,38 @@ Use *ngIf when you don't want the element to show up inside the DOM if it meets 
     This text will show if courses.length not equal to 0
 </div>
 
-<h3>Using ngSwitchCase</h3>
+<!-- ****************** USING ngSwitchCase ****************** -->
+<h4>Using ngSwitchCase</h4>
 <ul class="nav nav-pills">
-    <li class="active"><a href="">Map View</a></li>
-    <li><a href="">List View</a></li>
+    <li class="nav-item">
+        <a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List View</a>
+    </li>
 </ul>
-<div>
-    <div>Map View Content</div>
-    <div>List View Content</div>
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Map View Content</div> <!-- Use double quotes for the value of this directive. Use single quotes for the map as a string. -->
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
 </div>
+
+<!-- ****************** USING ngFor ****************** -->
+<h4>Using *ngFor again</h4>
+index is an exported value from Angular. Go to angular.io to find all exported values of a directive.
+<ul>
+    <li *ngFor="let listItem of list; index as i"> <!-- index is an exported value from Angular. Go to angular.io to find all exported values of a directive. -->
+        {{ i }} - {{ listItem.name }} <button (click)="onRemove(listItem )">Remove</button>
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let listItem of list; index as i; even as isEven;">
+        {{ i }} - {{ listItem.name }} <span *ngIf="isEven">is EVEN</span>
+    </li>
+</ul>
+
+<!-- ****************** USING ngFor WITH CHANGE DETECTION ****************** -->
+<button (click)="onAdd()">Add</button>
+
 
 
